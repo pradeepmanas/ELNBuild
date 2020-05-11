@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'logilabeln'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1f9e2cd2c8d54c4fa2f34f0f338496df }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c1c760a456f44c5d808d11ff56d01271 }}
         package: '${{ github.workspace }}/target/*.war'
