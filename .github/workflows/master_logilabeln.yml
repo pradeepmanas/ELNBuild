@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@master
@@ -24,9 +24,9 @@ jobs:
       run: mvn clean install
 
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v1
+      uses: azure/webapps-deploy@v2
       with:
         app-name: 'logilabeln'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_48da940063a44b1290fe22870f008ddd }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_72fd6aa104b641809709a8c3e96ce921 }}
         package: '${{ github.workspace }}/target/*.war'
