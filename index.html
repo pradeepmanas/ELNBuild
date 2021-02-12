@@ -4,13 +4,55 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Application</title>
 
+
+    <script src="js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body class="containerbg">
-    <div>file using github</div>
+
+    <div id="id_container">
+        <a href="#" id="idlink"> click </a>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#idlink").click(function () {
+                let obj = { username: "keerthana", password: "admin" };
+
+                $.ajax({
+                    url: "http://localhost:8080/",
+                    type: "GET",
+                    //type: "post",
+                    // data: JSON.stringify(obj),
+                    headers: { 'Tenant': 'tenant1' },
+                    contentType: "application/json",
+                    success: function (response) {
+                        if (response !== null && response.objResponse !== null && response.objResponse.status) {
+                            let user = response;
+                            let url = "http://localhost:3000/#" + user.username + "$" + user.password
+                            window.open(url, '_blank');
+                        }
+                        else if (response !== null && response.objResponse !== null) {
+                            alert(response.objResponse.information)
+                        }
+                    },
+                    error: function (e) {
+                        //called when there is an error
+                        //console.log(e.message);
+                    }
+                });
+
+            });
+        });
+    </script>
+</body>
+
 
 
 </html>
